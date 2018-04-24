@@ -107,7 +107,7 @@ def sum_until_prime_input():
 def run_test_next_prime():
     """ Tests the   next_prime    function. """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # DONE: 3. Implement this TEST function.
     #   It TESTS the  wait_for_prime  function defined below.
     #   Include at least  ** 6 **  tests. (We supplied 5 tests for you.)
     #
@@ -171,14 +171,17 @@ def run_test_next_prime():
     # Test 6:
     print()
     print('TEST STARTED!  Has it ended?')
-
+    expected = 17
+    actual = next_prime(16)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
     print('TEST ENDED!')
 
 
 def next_prime(m):
     """
     What comes in:  An integer   m   that is at least 2.
-    What goes out:  Returns the smallest integer greeater than
+    What goes out:  Returns the smallest integer greater than
        or equal to   m   that is prime.
     Side effects:   None.
     Examples:
@@ -190,12 +193,17 @@ def next_prime(m):
       :type m: int
     """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPLEMENTATION REQUIREMENT:
     #    -- Use (call) the   is_prime   function above appropriately.
     # ------------------------------------------------------------------
+
+    while True:
+        if is_prime(m):
+            return m
+        m += 1
 
 
 def run_test_prime_gap():
@@ -323,7 +331,7 @@ def prime_gap(m):
       :type m: int
     """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #   The testing code is already written for you (above).
     #
     # IMPLEMENTATION REQUIREMENT:
@@ -331,11 +339,17 @@ def prime_gap(m):
     #       (that you implemented) appropriately.
     # ------------------------------------------------------------------
 
+    k = 2
+    while True:
+        if next_prime(k+1) - next_prime(k) >= m:
+            return next_prime(k)
+        k = k + 1
+
 
 def run_test_wait_for_sum_of_cubes():
     """ Tests the   wait_for_sum_of_cubes    function. """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement this TEST function.
+    # DONE: 6. Implement this TEST function.
     #   It TESTS the  wait_for_sum_of_cubes  function defined below.
     #   Include at least  ** 8 **  tests. (We supplied 6 tests for you.)
     #
@@ -411,7 +425,10 @@ def run_test_wait_for_sum_of_cubes():
     # Test 7:
     print()
     print('TEST STARTED!  Has it ended?')
-
+    expected = 3
+    actual = wait_for_sum_of_cubes(14)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
     print('TEST ENDED!')
 
     # TO DO 6 (continued):
@@ -421,7 +438,10 @@ def run_test_wait_for_sum_of_cubes():
     # Test 8:
     print()
     print('TEST STARTED!  Has it ended?')
-
+    expected = 4
+    actual = wait_for_sum_of_cubes(100)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
     print('TEST ENDED!')
 
 
@@ -459,7 +479,7 @@ def wait_for_sum_of_cubes(x):
       :type x: float  [or an int]
     """
     # ------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # DONE: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPLEMENTATION REQUIREMENT:
@@ -469,6 +489,14 @@ def wait_for_sum_of_cubes(x):
     # (or look up) a formula that would allow a faster computation.
     # But no fair using that in this function.
     # ------------------------------------------------------------------
+
+    total = 0
+    n = 0
+    while True:
+        n += 1
+        total += (n**3)
+        if total >= x:
+            return n
 
 
 # ----------------------------------------------------------------------
